@@ -42,13 +42,17 @@ const QRScannerPage = () => {
         if(result?.isMatch){
           setUrl(result?.connetionURL)
           setIsVerified(true)
+        } else {
+          alert("Verification failed. Please try again.");
+          setData(null); // Reset data to prompt QRScanner again
         }
-        // setAadharData(result.result);
       } else {
         alert("Something went wrong. Please try again.");
+        setData(null); // Reset data to prompt QRScanner again
       }
     } catch (err) {
-      setErr(err);
+      setErr(err.message || "An unexpected error occurred.");
+      setData(null);
     }
     finally{
       setIsLoading(false);
@@ -118,7 +122,7 @@ const QRScannerPage = () => {
               <p className="verifying-text">Verifying...</p>
             </div>
       )}
-     {data && <p>Scanned data: {data}</p>}
+     {/* {data && <p>Scanned data: {data}</p>} */}
      <p>{err && err.message}</p>
        </>
      )
