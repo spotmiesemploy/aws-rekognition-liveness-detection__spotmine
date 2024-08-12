@@ -122,7 +122,7 @@ const QRScannerPage = () => {
               <p className="verifying-text">Verifying...</p>
             </div>
       )}
-     // {data && <p>Scanned data: {data}</p>} 
+      {/* {data && <p>Scanned data: {data}</p>} */} 
      <p>{err && err.message}</p>
        </>
      )
