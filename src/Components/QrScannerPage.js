@@ -62,7 +62,7 @@ const QRScannerPage = () => {
   const handleScanSuccess = (decodedText, decodedResult) => {
     console.log(`QR Code decoded: ${decodedText}`, decodedResult);
     setData(decodedText);
-    // decodeData();
+    decodeData();
     // // Parse the scanned data (assuming XML format for Aadhar QR codes)
     // const parser = new DOMParser();
     // const xmlDoc = parser.parseFromString(decodedText, "text/xml");
@@ -122,7 +122,7 @@ const QRScannerPage = () => {
               <p className="verifying-text">Verifying...</p>
             </div>
       )}
-     {data && <p>Scanned data: {data}</p>} 
+     // {data && <p>Scanned data: {data}</p>} 
      <p>{err && err.message}</p>
        </>
      )
