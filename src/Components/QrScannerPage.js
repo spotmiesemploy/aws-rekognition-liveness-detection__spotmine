@@ -86,8 +86,14 @@ const QRScannerPage = () => {
 
   const handleNext = () => {
    if(url){
-    const message = JSON.stringify({type:'navigate',url});
-    window.ReactNativeWebView.postMessage(message);
+    alert(url)
+    if (window.ReactNativeWebView) {
+      const message = JSON.stringify({ type: 'navigate', url });
+      alert(message)
+      window.ReactNativeWebView.postMessage(message);
+    } else {
+      console.log('ReactNativeWebView is not available.');
+    }
    }
   }
 
@@ -105,6 +111,12 @@ const QRScannerPage = () => {
           fetched
         </p>
       )} */}
+      {isLoading && (
+            <div className="spinner-container">
+              <div className="spinner"></div>
+              <p className="verifying-text">Verifying...</p>
+            </div>
+      )}
      {!isVerified ? (
        <>
        <QRScanner
@@ -112,12 +124,7 @@ const QRScannerPage = () => {
        onScanError={handleScanError}
       />
       {/* <button onClick={handleScanSuccess}>click</button>  */}
-      {isLoading && (
-            <div className="spinner-container">
-              <div className="spinner"></div>
-              <p className="verifying-text">Verifying...</p>
-            </div>
-      )}
+      
       {/* {data && <p>Scanned data: {data}</p>} */} 
      <p>{err && err.message}</p>
        </>
