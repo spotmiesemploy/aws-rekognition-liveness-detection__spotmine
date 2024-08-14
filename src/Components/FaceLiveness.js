@@ -106,6 +106,7 @@ function FaceLiveness({ faceLivenessAnalysis }) {
             />
           )}
           {analysisComplete && (
+            <>
             <p
               style={{
                 display: "flex",
@@ -117,13 +118,15 @@ function FaceLiveness({ faceLivenessAnalysis }) {
             >
               Analysis complete. You can proceed to the next step.
             </p>
-          )}
-          <button
+            <button
             onClick={() => navigate("/aadhaar")}
             style={{ cursor: "pointer" }}
           >
             Go To aadhar scan
           </button>
+             </>
+          )}
+          
         </>
       ) : (
         <p>Error: Unable to start the session. Please try again later.</p>
