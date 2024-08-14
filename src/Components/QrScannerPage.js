@@ -14,25 +14,21 @@ const QRScannerPage = () => {
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("X-API-KEY", "3646f320-aee6-452f-96f8-23718f3000b6");
 
-  const raw = JSON.stringify({
-    encodedQR: data,
-  });
-
   console.log(CommonStore.sessionId);
 
-  const requestOptions = {
-    method: "POST",
-    headers: myHeaders,
-    body: raw,
-    // redirect: "follow",
-  };
-
-  const decodeData = async () => {
+  const decodeData = async (decodetext) => {
     try { 
       setIsLoading(true);
       const response = await fetch(
         `https://ssiapi-staging.smartfalcon.io/aadhaar/verification/${CommonStore.sessionId}`,
-        requestOptions
+        {
+          method: "POST",
+          headers: myHeaders,
+          body: JSON.stringify({
+              encodedQR: decodetext,
+            }),
+          // redirect: "follow",
+        }
       );
 
       if (response.ok) {
@@ -62,7 +58,7 @@ const QRScannerPage = () => {
   const handleScanSuccess = (decodedText, decodedResult) => {
     console.log(`QR Code decoded: ${decodedText}`, decodedResult);
     setData(decodedText);
-    decodeData();
+    decodeData(decodedText);
     // // Parse the scanned data (assuming XML format for Aadhar QR codes)
     // const parser = new DOMParser();
     // const xmlDoc = parser.parseFromString(decodedText, "text/xml");
@@ -115,7 +111,7 @@ const QRScannerPage = () => {
        onScanSuccess={handleScanSuccess}
        onScanError={handleScanError}
       />
-      {/* <button onClick={decodeData}>click</button>  */}
+      {/* <button onClick={handleScanSuccess}>click</button>  */}
       {isLoading && (
             <div className="spinner-container">
               <div className="spinner"></div>
