@@ -1,6 +1,7 @@
 import { useState } from "react";
 import QRScanner from "./QrScanner";
 import { useStores } from "../store/index";
+import { useNavigate } from "react-router-dom";
 
 const QRScannerPage = () => {
   const [data, setData] = useState(null);
@@ -9,7 +10,7 @@ const QRScannerPage = () => {
   const [isLoading,setIsLoading] = useState(false);
   const { CommonStore } = useStores();
   const [url,setUrl] = useState(null)
-
+const navigate=useNavigate();
   const myHeaders = new Headers();
   myHeaders.append("Content-Type", "application/json");
   myHeaders.append("X-API-KEY", "3646f320-aee6-452f-96f8-23718f3000b6");
@@ -85,16 +86,7 @@ const QRScannerPage = () => {
   };
 
   const handleNext = () => {
-   if(url){
-    // alert(url)
-    if (window.ReactNativeWebView) {
-      const message = JSON.stringify({ type: 'navigate', url });
-      // alert(message)
-      window.ReactNativeWebView.postMessage(message);
-    } else {
-      console.log('ReactNativeWebView is not available.');
-    }
-   }
+   navigate('/completed')
   }
 
   return (
