@@ -117,7 +117,7 @@ const QRScannerPage = () => {
               <p className="verifying-text">Verifying...</p>
             </div>
       )}
-     {!isVerified ? (
+     {!isVerified &&(
        <>
        <QRScanner
        onScanSuccess={handleScanSuccess}
@@ -126,17 +126,22 @@ const QRScannerPage = () => {
       {/* <button onClick={handleScanSuccess}>click</button>  */}
       
       {/* {data && <p>Scanned data: {data}</p>} */} 
-     <p>{err && err.message}</p>
+     {/* <p>{err && err.message}</p> */}
        </>
-     )
-    :
-    (
+     )}
+    
+    {isVerified && (
       <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",height:"90vh"}}>
           <p style={{fontSize:"20px"}}>Aadhaar is verified successfully!</p>
-          <button style={{backgroundColor:'#5869E6',display:'flex',justifyContent:'center',alignItems:'center',borderRadius:12,width:'95%',paddingTop:'4%',paddingBottom:"4%",color:"white",border:"none",position:"absolute",bottom:"4%"}} onClick={handleNext}>OK</button>
+          <button 
+          style={{backgroundColor:'#5869E6',display:'flex',justifyContent:'center',alignItems:'center',borderRadius:12,width:'95%',paddingTop:'4%',paddingBottom:"4%",color:"white",border:"none",position:"absolute",bottom:"4%"}}
+          //  onClick={handleNext}
+          id="navigateButton"
+           >
+           OK
+           </button>
         </div>
-    )
-    }
+    )}
     </div>
   );
 };
