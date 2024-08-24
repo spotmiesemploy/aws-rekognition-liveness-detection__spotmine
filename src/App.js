@@ -62,6 +62,8 @@ function App() {
           }
         />
         <Route path="/aadhaar" element={<QRScannerPage />} />
+        <Route path="/completed" element={<div></div>} />
+
       </Routes>
     </Router>
   );
