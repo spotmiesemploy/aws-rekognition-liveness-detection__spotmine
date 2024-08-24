@@ -86,10 +86,10 @@ const QRScannerPage = () => {
 
   const handleNext = () => {
    if(url){
-    alert(url)
+    // alert(url)
     if (window.ReactNativeWebView) {
       const message = JSON.stringify({ type: 'navigate', url });
-      alert(message)
+      // alert(message)
       window.ReactNativeWebView.postMessage(message);
     } else {
       console.log('ReactNativeWebView is not available.');
@@ -135,8 +135,8 @@ const QRScannerPage = () => {
           <p style={{fontSize:"20px"}}>Aadhaar is verified successfully!</p>
           <button 
           style={{backgroundColor:'#5869E6',display:'flex',justifyContent:'center',alignItems:'center',borderRadius:12,width:'95%',paddingTop:'4%',paddingBottom:"4%",color:"white",border:"none",position:"absolute",bottom:"4%"}}
-          //  onClick={handleNext}
-          id="navigateButton"
+           onClick={handleNext}
+          // id="navigateButton"
            >
            OK
            </button>
