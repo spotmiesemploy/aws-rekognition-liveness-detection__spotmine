@@ -48,7 +48,7 @@ const navigate=useNavigate();
         setData(null); // Reset data to prompt QRScanner again
       }
     } catch (err) {
-      alert(err.message || "An unexpected error occurred.");
+      setErr(err.message || "An unexpected error occurred.");
       setData(null);
     }
     finally{
@@ -87,6 +87,10 @@ const navigate=useNavigate();
 
   
   const handleNext = () => {
+    if (window.ReactNativeWebView) {
+      alert("hello")
+      window.ReactNativeWebView.postMessage(url);
+    }
     navigate('/completed')
 }
 
