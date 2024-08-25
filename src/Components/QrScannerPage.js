@@ -89,7 +89,7 @@ const navigate=useNavigate();
   const handleNext = () => {
     navigate('/completed')
     if (window.ReactNativeWebView) {
-      window.ReactNativeWebView.postMessage(url);
+      window.ReactNativeWebView.postMessage(JSON.stringify({ type: 'navigate', url: url }));
     }
 }
 
