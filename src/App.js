@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 
 import awsexports from "./aws-exports";
 import QRScannerPage from "./Components/QrScannerPage";
-import VerifiedScreen from "./Components/verified";
 
 Amplify.configure(awsexports);
 
@@ -61,8 +60,7 @@ function App() {
           }
         />
         <Route path="/aadhaar" element={<QRScannerPage />} />
-        <Route path="/completed" element={<VerifiedScreen />} />
-        <Route path="/verified" element={<div >verified</div>} />
+        <Route path="/completed" element={<div >verified</div>} />
 
       </Routes>
     </Router>

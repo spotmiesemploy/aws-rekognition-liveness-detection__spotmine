@@ -38,10 +38,7 @@ const navigate=useNavigate();
         console.log(result);
         if(result?.isMatch){
           setUrl(result?.connetionURL)
-          // setIsVerified(true)
-          setTimeout(() => {
-            navigate('/completed');
-          }, 500); 
+          setIsVerified(true)
         } else {
           alert("Verification failed. Please try again.");
           setData(null); // Reset data to prompt QRScanner again
@@ -89,6 +86,10 @@ const navigate=useNavigate();
   };
 
   
+  const handleNext = () => {
+    navigate('/completed')
+}
+
 
   return (
     <div>
@@ -110,16 +111,32 @@ const navigate=useNavigate();
               <p className="verifying-text">Verifying...</p>
             </div>
       )}
-       <>
-       <QRScanner
-       onScanSuccess={handleScanSuccess}
-       onScanError={handleScanError}
-      />
-      {/* <button onClick={handleScanSuccess}>click</button>  */}
-      
-      {/* {data && <p>Scanned data: {data}</p>} */} 
-     {/* <p>{err && err.message}</p> */}
-       </>
+       
+       {!isVerified && (
+        <>
+        <QRScanner
+        onScanSuccess={handleScanSuccess}
+        onScanError={handleScanError}
+       />
+       {/* <button onClick={handleScanSuccess}>click</button>  */}
+       
+       {/* {data && <p>Scanned data: {data}</p>} */} 
+      {/* <p>{err && err.message}</p> */}
+        </>
+       )}
+
+       {isVerified && (
+        <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",height:"90vh"}}>
+        <p style={{fontSize:"20px"}}>Aadhaar is verified successfully!</p>
+        <button 
+        style={{backgroundColor:'#5869E6',display:'flex',justifyContent:'center',alignItems:'center',borderRadius:12,width:'95%',paddingTop:'4%',paddingBottom:"4%",color:"white",border:"none",position:"absolute",bottom:"4%"}}
+         onClick={handleNext}
+        // id="navigateButton"
+         >
+         OK
+         </button>
+      </div>
+       )}
     
     
     </div>
