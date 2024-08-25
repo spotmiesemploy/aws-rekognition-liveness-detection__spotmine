@@ -48,7 +48,7 @@ const navigate=useNavigate();
         setData(null); // Reset data to prompt QRScanner again
       }
     } catch (err) {
-      setErr(err.message || "An unexpected error occurred.");
+      alert(err.message || "An unexpected error occurred.");
       setData(null);
     }
     finally{
@@ -112,7 +112,7 @@ const navigate=useNavigate();
             </div>
       )}
        
-       {!isVerified && (
+       {!isVerified && !isLoading && (
         <>
         <QRScanner
         onScanSuccess={handleScanSuccess}
@@ -125,7 +125,7 @@ const navigate=useNavigate();
         </>
        )}
 
-       {isVerified && (
+       { !isLoading &&  isVerified &&(
         <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",height:"90vh"}}>
         <p style={{fontSize:"20px"}}>Aadhaar is verified successfully!</p>
         <button 
