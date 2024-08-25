@@ -10,12 +10,12 @@ import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-route
 
 import awsexports from "./aws-exports";
 import QRScannerPage from "./Components/QrScannerPage";
+import VerifiedScreen from "./Components/verified";
 
 Amplify.configure(awsexports);
 
 function App() {
   const [faceLivenessAnalysis, setFaceLivenessAnalysis] = React.useState(null);
-const navigate=useNavigate();
   const getfaceLivenessAnalysis = (faceLivenessAnalysis) => {
     if (faceLivenessAnalysis !== null) {
       setFaceLivenessAnalysis(faceLivenessAnalysis);
@@ -25,9 +25,6 @@ const navigate=useNavigate();
   const tryagain = () => {
     setFaceLivenessAnalysis(null);
   };
-const handleNext=()=>{
-  navigate('/verified')
-}
   return (
     <Router>
       <Routes>
@@ -64,18 +61,7 @@ const handleNext=()=>{
           }
         />
         <Route path="/aadhaar" element={<QRScannerPage />} />
-        <Route path="/completed" element={
-          <div style={{display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",height:"90vh"}}>
-          <p style={{fontSize:"20px"}}>Aadhaar is verified successfully!</p>
-          <button 
-          style={{backgroundColor:'#5869E6',display:'flex',justifyContent:'center',alignItems:'center',borderRadius:12,width:'95%',paddingTop:'4%',paddingBottom:"4%",color:"white",border:"none",position:"absolute",bottom:"4%"}}
-           onClick={handleNext}
-          // id="navigateButton"
-           >
-           OK
-           </button>
-        </div>
-      } />
+        <Route path="/completed" element={<VerifiedScreen />} />
         <Route path="/verified" element={<div >verified</div>} />
 
       </Routes>
