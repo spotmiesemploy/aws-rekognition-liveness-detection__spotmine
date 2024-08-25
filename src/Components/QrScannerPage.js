@@ -39,7 +39,9 @@ const navigate=useNavigate();
         if(result?.isMatch){
           setUrl(result?.connetionURL)
           // setIsVerified(true)
-          navigate('/completed')
+          setTimeout(() => {
+            navigate('/completed');
+          }, 500); 
         } else {
           alert("Verification failed. Please try again.");
           setData(null); // Reset data to prompt QRScanner again
