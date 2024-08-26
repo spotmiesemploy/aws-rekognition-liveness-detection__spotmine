@@ -107,6 +107,7 @@ function FaceLiveness({ faceLivenessAnalysis }) {
           )}
           {analysisComplete && (
             <>
+            <div style={{display:'flex',flexDirection:'column',justifyContent:'center',alignItems:'center'}}>
             <p
               style={{
                 display: "flex",
@@ -120,10 +121,11 @@ function FaceLiveness({ faceLivenessAnalysis }) {
             </p>
             <button
             onClick={() => navigate("/aadhaar")}
-            style={{ cursor: "pointer" }}
+            style={{ cursor: "pointer",display:'flex',justifyContent:'center',alignContent:'center',backgroundColor:'#5869E6',border:'none',borderRadius:10,padding:10,color:'white' }}
           >
             Go To aadhar scan
           </button>
+          </div>
              </>
           )}
           
