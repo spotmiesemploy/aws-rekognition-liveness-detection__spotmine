@@ -44,7 +44,7 @@ const navigate=useNavigate();
           setData(null); // Reset data to prompt QRScanner again
         }
       } else {
-        alert("Something went wrong. Please try again.");
+        alert(`Something went wrong. Please try again.${response}`);
         setData(null); // Reset data to prompt QRScanner again
       }
     } catch (err) {
