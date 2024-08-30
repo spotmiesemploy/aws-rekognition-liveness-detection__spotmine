@@ -2,6 +2,8 @@ import { useState } from "react";
 import QRScanner from "./QrScanner";
 import { useStores } from "../store/index";
 import { useNavigate } from "react-router-dom";
+import { toJS } from 'mobx';
+
 
 const QRScannerPage = () => {
   const [data, setData] = useState(null);
@@ -44,7 +46,7 @@ const navigate=useNavigate();
           setData(null); // Reset data to prompt QRScanner again
         }
       } else {
-        alert(`Something went wrong. Please try again.${response}`);
+        alert(`Something went wrong. Please try again.${toJS(response)}`);
         setData(null); // Reset data to prompt QRScanner again
       }
     } catch (err) {
